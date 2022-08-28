@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace Lab3App1
 {
@@ -82,8 +84,6 @@ namespace Lab3App1
             {
                 textBox.Foreground = Brushes.Green;
             }
-                
-
         }
 
         private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
@@ -91,6 +91,31 @@ namespace Lab3App1
             if (textBox != null)
             {
                 textBox.Foreground = Brushes.Violet;
+            }
+        }
+
+        private void ExitExecude(object sender, ExecutedRoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void OpenExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Текстовое поле (*.txt)| *.txt | Все файлы (*.*) | *.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                textBox.Text = File.ReadAllText(openFileDialog.FileName);
+            }
+        }
+
+        private void SaveExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Текстовое поле (*.txt)| *.txt | Все файлы (*.*) | *.*";
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, textBox.Text);
             }
         }
     }
