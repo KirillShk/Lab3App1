@@ -31,7 +31,7 @@ namespace Lab3App1
         {
             if (textBox != null)
             {
-                string fontName = ((sender as ComboBox).SelectedItem as TextBlock).Text;
+                string fontName = ((sender as ComboBox).SelectedItem as string);
                 textBox.FontFamily = new FontFamily(fontName);
             }
         }
@@ -40,7 +40,7 @@ namespace Lab3App1
         {
             if (textBox != null)
             {
-                double sizeFont = Convert.ToDouble(((sender as ComboBox).SelectedItem as TextBlock).Text);
+                double sizeFont = Convert.ToDouble(((sender as ComboBox).SelectedItem));
                 textBox.FontSize = sizeFont;
             }
         }
